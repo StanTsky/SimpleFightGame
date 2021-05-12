@@ -1,9 +1,6 @@
 ## My Name
 Stan Turovsky
 
-## My Class
-**CPSC 24500**
-
 ## Description
 Simple console based fight game with 2 types of enemies.
 
