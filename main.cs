@@ -1,3 +1,13 @@
+/*
+--------------------------------------------------------------------
+* Name:       Stan Turovsky
+* Class:      CPSC 24500
+* Assignment: HW 2
+* File:       main.cs
+* Purpose:    Simple fight game to show use of class overrides in C#
+--------------------------------------------------------------------
+*/
+
 using System;
 
 namespace SimpleFightGame
@@ -49,9 +59,9 @@ namespace SimpleFightGame
     {
         public enemy1()
         {
-            Health = 100;
-            Type = 1;
-            Name = "Enemy1";
+            Health = 100;     // Initial enemy1 health
+            Type = 1;         // Enemy Type
+            Name = "Enemy1";  // Initial enemy1 name
         }
         public override void Speak(player P)
         {
@@ -67,9 +77,9 @@ namespace SimpleFightGame
     {
         public enemy2()
         {
-            Health = 100;
-            Type = 2;
-            Name = "Enemy2";
+            Health = 100;       // Initial enemy2 health
+            Type = 2;           // Enemy Type
+            Name = "Enemy2";    // Initial enemy2 name
         }
         public override void Speak(player P)
         {
@@ -94,6 +104,15 @@ namespace SimpleFightGame
             int dmg;                    // damage amount
             int choice;                 // choice
             string newGame;             // decision to play again
+
+            string lineStars = new String('*', 60);
+
+            Console.Write("\n" + lineStars + "\n");
+            Console.Write(" This is simple fight game between you and 2 other enemies\n");
+            Console.Write(" 1) Enter your name and names for the ememies\n");
+            Console.Write(" 2) Press any key to continue each fight attempt\n");
+            Console.Write(" 3) In the end you will be prompted if you want to retry\n");
+            Console.Write(lineStars + "\n\n");
 
             Console.Write("What is your name? ");
             p.Name = Console.ReadLine();
