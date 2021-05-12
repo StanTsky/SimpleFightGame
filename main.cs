@@ -12,94 +12,84 @@ using System;
 
 namespace SimpleFightGame
 {
-    public class player
+    public class Player
     {
         public int Health { get; set; }
         public string Name { get; set; }
-        public player()
+        public Player()
         {
             Name = "Player";  // Initial player name
             Health = 100;     // Initial player health
         }
-        public void Attack (enemy E, int Dmg)
+        public void Attack(Enemy e, int dmg)
         {
-            E.Health-=Dmg;
-            if (E.Health <= 0)
+            e.Health -= dmg;
+            if (e.Health <= 0)
             {
-                Console.WriteLine($"{E.Name} died!");
+                Console.WriteLine($"{e.Name} died!");
             }
             else
             {
-                Console.WriteLine($"\t {E.Name} has {E.Health} health left!");
+                Console.WriteLine($"\t {e.Name} has {e.Health} health left!");
             }
         }
     }
-    abstract public class enemy
-    {       
+    public abstract class Enemy
+    {
         public string Name { get; set; }
         public int Health { get; set; }
         public int Type { get; set; }
 
-        public abstract void Speak(player P);
+        public abstract void Speak(Player p);
 
-        public virtual void Attack(player P, int Dmg)
+        public virtual void Attack(Player p, int dmg)
         {
-            P.Health -= Dmg;
-            if (P.Health <= 0)
+            p.Health -= dmg;
+            if (p.Health <= 0)
             {
-                Console.WriteLine($"{P.Name} died!");
+                Console.WriteLine($"{p.Name} died!");
             }
             else
             {
-                Console.WriteLine($"\t {P.Name} has {P.Health} health left!");
+                Console.WriteLine($"\t {p.Name} has {p.Health} health left!");
             }
         }
     }
-    class enemy1 : enemy
+    class Enemy1 : Enemy
     {
-        public enemy1()
+        public Enemy1()
         {
             Health = 100;     // Initial enemy1 health
             Type = 1;         // Enemy Type
             Name = "Enemy1";  // Initial enemy1 name
         }
-        public override void Speak(player P)
+        public override void Speak(Player p)
         {
-            Console.WriteLine($"{Name}: Prepare to die, {P.Name}! I'm type {Type}!");
-        }
-
-        public override void Attack(player P, int Dmg)
-        {
-            base.Attack(P, Dmg);        // fulfills override requirement
+            Console.WriteLine($"{Name}: Prepare to die, {p.Name}! I'm type {Type}!");
         }
     }
-    class enemy2: enemy
+    class Enemy2 : Enemy
     {
-        public enemy2()
+        public Enemy2()
         {
             Health = 100;       // Initial enemy2 health
             Type = 2;           // Enemy Type
             Name = "Enemy2";    // Initial enemy2 name
         }
-        public override void Speak(player P)
+        public override void Speak(Player p)
         {
             Console.WriteLine($"{Name}: Haha! You'll lose! I'm type {Type}!\n");
-        }
-
-        public override void Attack(player P, int Dmg)
-        {
-            base.Attack(P, Dmg);        // fulfills override requirement
         }
     }
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Random rnd = new Random();  // random number generator
-            enemy e1 = new enemy1();    // create enemies
-            enemy e2 = new enemy2();
-            player p = new player();    // create player
+            Enemy e1 = new Enemy1();    // create enemies
+            Enemy e2 = new Enemy2();
+            Player p = new Player();    // create player
 
             int dmg;                    // damage amount
             int choice;                 // choice
@@ -161,9 +151,9 @@ namespace SimpleFightGame
 
                     Console.ReadKey();                              // lets you see results
 
-                } while (e1.Health>0 & e2.Health>0 & p.Health>0);   // keep playing until someone dies
+                } while (e1.Health > 0 & e2.Health > 0 & p.Health > 0);   // keep playing until someone dies
                 Console.Write("Play again?(y/n) ");
-                newGame = Console.ReadLine().ToLower();             // get user's decision
+                newGame = Console.ReadLine()?.ToLower();             // get user's decision
             } while (newGame == "y");
         }
     }
