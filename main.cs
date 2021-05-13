@@ -1,7 +1,7 @@
 /*
 --------------------------------------------------------------------
 * Name:       Stan Turovsky
-* Class:      CPSC 24500
+* Class:      CPSC 24500 -- Object-Oriented Programming
 * Assignment: HW 2
 * File:       main.cs
 * Purpose:    Simple fight game to show use of class overrides in C#
@@ -148,12 +148,11 @@ namespace SimpleFightGame
                             p.Attack(e2, dmg);
                             break;
                     }
-
-                    Console.ReadKey();                              // lets you see results
-
+                    Console.ReadKey();                                    // lets you see results
                 } while (e1.Health > 0 & e2.Health > 0 & p.Health > 0);   // keep playing until someone dies
+                
                 Console.Write("Play again?(y/n) ");
-                newGame = Console.ReadLine()?.ToLower();             // get user's decision
+                newGame = Console.ReadLine()?.ToLower();                  // get user's decision
             } while (newGame == "y");
         }
     }
